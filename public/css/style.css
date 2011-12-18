@@ -1,0 +1,35 @@
+@import url(bootstrap.css);
+
+body {
+  background: #efefef;
+  color: #333;
+}
+
+a {
+  color: #333;
+}
+
+#wrapper {
+  background: #fff;
+  margin: 0 auto;
+  padding: 10px 10px 10px 130px;
+  width: 760px;
+}
+
+nav#main {
+  position: absolute;
+  width: 100%;
+  margin-top: 55px;
+}
+
+nav#main a {
+  width: 87%;
+  float: left;
+  padding: 3px 0 0 13%;
+}
+
+nav#main a:hover, nav#main a.active {
+  background: #442233;
+  opacity: .5;
+  color: #fff;
+}
