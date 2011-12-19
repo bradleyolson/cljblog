@@ -6,7 +6,13 @@
 (defn index
   []
   (partials/layout
-    [:h2 "hi"]
+    [:h2 "Home"]
+    ))
+
+(defn about
+  []
+  (partials/layout
+    [:h2 "About"]
     ))
 
 (defn fourohfour

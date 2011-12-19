@@ -12,8 +12,17 @@ a {
 #wrapper {
   background: #fff;
   margin: 0 auto;
-  padding: 10px 10px 10px 130px;
+  padding: 0 0 0 130px;
   width: 760px;
+}
+
+#container {
+  position: relative;
+  float: right;
+  background: #fff;
+  width: 100%;
+  padding: 10px;
+  z-index: 10;
 }
 
 nav#main {

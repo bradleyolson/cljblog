@@ -10,6 +10,7 @@
 (defn nav
   [id]
   [:nav { :id id }
+    [:a { :href "/" } "Home"]  
     [:a { :href "/about" } "About"]])
 
 (defn footer
@@ -30,7 +31,8 @@
       [:body
         (nav "main")
         [:div { :id "wrapper" }
-          (head)
-          [:section { :id "content" }
-            content]
-          (footer)]])))
+          [:div {:id "container"}
+            (head)
+            [:section { :id "content" }
+              content]
+            (footer)]]])))
