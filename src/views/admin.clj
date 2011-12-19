@@ -9,9 +9,9 @@
     [:form
      [:section
        [:label { :for "username" } "Username:"]
-       [:input { :type "text" :id "username" :name "username" :value "Username"}]]
+       [:input { :type "text" :id "username" :name "username" }]]
      [:section
        [:label { :for "password" } "Password:"]
-       [:input { :type "password" :id "password" :name "password"}]]
+       [:input { :type "password" :id "password" :name "password" }]]
      [:input { :type "submit" :value "Login" }]]
     ))
