@@ -4,6 +4,13 @@
   (:use hiccup.page-helpers))
 
 (defn index
+  []
   (partials/layout
     [:h2 "hi"]
+    ))
+
+(defn fourohfour
+  []
+  (partials/layout
+    [:h2 "fourohfour"]
     ))

@@ -1,5 +1,5 @@
 (ns cljblog.core
-  (:use [views.partial :as partials])
+  (:use [views.common :as common])
   (:use compojure.core)
   (:use hiccup.core) 
   (:use hiccup.page-helpers)
@@ -8,24 +8,15 @@
   (:use ring.middleware.file)
   (:use ring.middleware.file-info))
 
-(defn index []
-  (partials/layout
-    [:h2 "foo"]))
-
-(defn fourohfour []
-  (partials/layout
-    [:h2 "The requested file could not be found"]))
-
 (defroutes handler
   (GET "/" []
-    (index))
+    (common/index))
 
   (GET "/404" []
-    (fourohfour))
+    (common/fourohfour))
 
   (ANY "/*" []
     (redirect "/404"))
-
   )
 
 (def app
