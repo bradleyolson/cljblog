@@ -42,3 +42,37 @@ nav#main a:hover, nav#main a.active {
   opacity: .5;
   color: #fff;
 }
+
+/* main */
+
+form {
+  width: 60%;
+  float: left;
+  clear: both;
+}
+
+label {
+  text-align: left;
+  width: 18%;
+  padding-left: 2%;
+}
+
+form section {
+  margin-top: 10px;
+}
+
+form input {
+  width: 65%;
+  padding: 2px 1%;
+}
+
+form input[type=submit] {
+  float: right;
+  margin: 10px 13% 0 0;
+}
+
+/* footer */
+footer {
+  width: 100%;
+  float: left;
+}
