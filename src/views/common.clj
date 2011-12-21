@@ -1,5 +1,6 @@
 (ns views.common
   (:use [views.partial :as partials])
+  (:use [models.blog :as blog])
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
@@ -7,7 +8,7 @@
   []
   (partials/layout
     [:h2 "Home"]
-    ))
+    (partials/posts)))
 
 (defn about
   []

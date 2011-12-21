@@ -1,6 +1,12 @@
 (ns views.partial
+  (:use [models.blog :as blog])
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
+
+(defn posts
+  []
+  (map (fn [p]
+    (println p)) blog/all))
 
 (defn head
   []
@@ -16,7 +22,8 @@
 (defn footer
   []
   [:footer
-    [:p "&copy;2011 @baoist"]])
+    [:p "&copy;2011 "
+     [:a { :href "http://twitter.com/baoist" :target "_new" } "@baoist"]]])
 
 (defn layout
   [& content]
@@ -26,8 +33,8 @@
         [:meta { :http-equiv "Content-type"
                  :content "text/html; charset=utf-8"}]
         [:title "Blogger" ]]
-        (include-css "css/style.css")
-        (include-js "js/jquery.js", "js/app.js")
+        (include-css "/css/style.css")
+        (include-js "/js/jquery.js", "js/app.js")
       [:body
         (nav "main")
         [:div { :id "wrapper" }

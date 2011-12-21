@@ -15,3 +15,19 @@
        [:input { :type "password" :id "password" :name "password" }]]
      [:input { :type "submit" :value "Login" }]]
     ))
+
+(defn panel
+  []
+  (partials/layout
+    [:a { :href "/panel/new" } "New Post"]))
+
+(defn newpost
+  []
+  (partials/layout
+    [:a { :href "/panel/new" } "New Post"]))
+
+(defn post
+  []
+  (partials/layout
+    [:a { :href "/panel/new" } "New Post"]))  
+
