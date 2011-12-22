@@ -6,16 +6,13 @@
 
 (defn single-post
   [data]
-  ([:article
-    [:h1 (:title data)]
-    [:p (:body data)]]))
+    [:article
+      [:h1 (:title data)]
+      [:p (:body data)]])
 
 (defn all-posts
   [data]
-  (map (fn [post] 
-         [:article
-           [:h1 (:title post)]
-           [:p (:body post)]]) 
+  (map (fn [post] (single-post post)) 
        data))
 
 (defn head
