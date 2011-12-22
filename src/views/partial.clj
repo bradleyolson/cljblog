@@ -3,10 +3,20 @@
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
-(defn posts
-  []
-  (map (fn [p]
-    (println p)) blog/all))
+
+(defn single-post
+  [data]
+  ([:article
+    [:h1 (:title data)]
+    [:p (:body data)]]))
+
+(defn all-posts
+  [data]
+  (map (fn [post] 
+         [:article
+           [:h1 (:title post)]
+           [:p (:body post)]]) 
+       data))
 
 (defn head
   []

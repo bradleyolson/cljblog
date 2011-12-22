@@ -1,6 +1,7 @@
 (ns views.common
   (:use [views.partial :as partials])
   (:use [models.blog :as blog])
+  (:use clojure.pprint)
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
@@ -8,16 +9,15 @@
   []
   (partials/layout
     [:h2 "Home"]
-    (partials/posts)))
+    [:section
+     (partials/all-posts (blog/retrieve-all))]))
 
 (defn about
   []
   (partials/layout
-    [:h2 "About"]
-    ))
+    [:h2 "About"]))
 
 (defn fourohfour
   []
   (partials/layout
-    [:h2 "fourohfour"]
-    ))
+    [:h2 "fourohfour"]))
