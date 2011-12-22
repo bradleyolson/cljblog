@@ -32,9 +32,15 @@ nav#main {
 }
 
 nav#main a {
-  width: 87%;
-  float: left;
-  padding: 3px 0 0 13%;
+  width: 100%;
+  display: block;
+}
+
+nav#main a span {
+  margin: 0 auto;
+  padding-left: 10px;
+  width: 900px;
+  display: block;
 }
 
 nav#main a:hover, nav#main a.active {

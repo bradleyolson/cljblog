@@ -23,8 +23,10 @@
 (defn nav
   [id]
   [:nav { :id id }
-    [:a { :href "/" } "Home"]  
-    [:a { :href "/about" } "About"]])
+    [:a { :href "/" } 
+      [:span "Home"]]  
+    [:a { :href "/about" } 
+      [:span "About"]]])
 
 (defn footer
   []
@@ -41,7 +43,7 @@
                  :content "text/html; charset=utf-8"}]
         [:title "Blogger" ]]
         (include-css "/css/style.css")
-        (include-js "/js/jquery.js", "js/app.js")
+        (include-js "/js/jquery.js" "/js/app.js")
       [:body
         (nav "main")
         [:div { :id "wrapper" }

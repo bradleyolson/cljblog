@@ -1,6 +1,6 @@
 # README
 
-# TODO:
+## TODO:
 * User Auth.
 * Posting
 * About
