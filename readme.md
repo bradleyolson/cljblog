@@ -1,8 +1,8 @@
 # README
 
 # TODO:
-## User Auth.
-## Posting
-## About
-## Comments
-## Tags
+* User Auth.
+* Posting
+* About
+* Comments
+* Tags
