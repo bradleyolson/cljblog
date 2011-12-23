@@ -10,12 +10,10 @@
 
 (defn sql-str
   [& args]
-  (let [item (first args)
-        remaining (args)])
-  (first args)
-  (map (fn [arg]
-         )
-       args))
+  (let [base "select * from blog"]
+    (map (fn [arg]
+      (str base (str arg "foo")))
+       args)))
 
 (defn retrieve-args
   [& args]
