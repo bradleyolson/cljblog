@@ -10,7 +10,7 @@
   (partials/layout
     [:h2 "Home"]
     [:section
-     (partials/all-posts (blog/retrieve 10))]))
+     (partials/all-posts (blog/retrieve-with "limit" 10 "title"))]))
 
 (defn about
   []
