@@ -4,8 +4,6 @@
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
-(def posts-per-page 1)
-
 (defn index
   []
   (partials/layout
@@ -18,7 +16,7 @@
     [:h2 "Home"]
     [:section
       (partials/all-posts 
-        (blog/retrieve-with "order by" "id desc" "limit" 1 (blog/page-offset (Integer/parseInt page) posts-per-page)))])
+        (blog/retrieve-with "order by" "id desc" "limit" 1 (blog/page-offset 1 posts-per-page)))])
 
 (defn about
   []

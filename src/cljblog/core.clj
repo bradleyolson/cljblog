@@ -4,6 +4,7 @@
   (:require [models.blog :as model])
   (:use hiccup.core) 
   (:use hiccup.page-helpers)
+  (:use compojure.core)
   (:use ring.util.response)
   (:use ring.middleware.reload)
   (:use ring.middleware.file)
