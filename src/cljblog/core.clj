@@ -2,7 +2,6 @@
   (:use [views.common :as common])
   (:use [views.admin :as admin])
   (:require [models.blog :as model])
-  (:use compojure.core)
   (:use hiccup.core) 
   (:use hiccup.page-helpers)
   (:use ring.util.response)
@@ -16,6 +15,12 @@
 
   (GET "/about" []
     (common/about))
+
+  (GET "/page" []
+    (common/page 1))
+
+  (GET "/page/:number" [number]
+    (common/page number))
 
   (GET "/login" []
     (admin/login))
