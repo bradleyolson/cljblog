@@ -3,6 +3,20 @@
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
+(defn pagi-prev
+  []
+  [:a { :href "#" } "&larr; previous"])
+
+(defn pagi-next
+  []
+  [:a { :href "#" } "next &rarr;"])
+
+(defn pagination
+  [posts page]
+  [:nav
+   (pagi-prev)
+   [:span { :class "separator" } "|"]
+   (pagi-next)])
 
 (defn single-post
   [data]
