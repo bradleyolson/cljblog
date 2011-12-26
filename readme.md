@@ -1,8 +1,8 @@
 # README
 
 ## TODO:
-* User Auth.
-* Posting
-* About
-* Comments
-* Tags
+* user auth
+* markdown parsing for posts
+* about
+* tags
+* comments
