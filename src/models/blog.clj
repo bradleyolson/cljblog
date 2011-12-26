@@ -1,12 +1,11 @@
 (ns models.blog
+  (:use [cljblog.globals :as globals])
   (:require [clojure.java.jdbc :as sql]))
-
-(def posts-per-page 2)
 
 (defn page-offset
   [page]
   ; returns current posts on specific page given "page" and "posts-per-page".
-  (* (- page 1) posts-per-page))
+  (* (- page 1) globals/posts-per-page))
 
 (defn retrieve-all
   []

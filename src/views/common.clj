@@ -1,6 +1,7 @@
 (ns views.common
   (:use [views.partial :as partials])
   (:use [models.blog :as blog])
+  (:use [cljblog.globals :as globals])
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
@@ -11,14 +12,14 @@
   (partials/layout
     [:h2 "Home"]
     [:section
-      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" 1))]))
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page))]))
 
 (defn page
   [page]
   (partials/layout
     [:h2 (str "Page: " page)]
     [:section
-      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" 2 "offset" (blog/page-offset page)))]))
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]))
 
 (defn about
   []
