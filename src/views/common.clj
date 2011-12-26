@@ -17,9 +17,7 @@
   (partials/layout
     [:h2 (str "Page: " page)]
     [:section
-      (let [posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page))]
-        (partials/all-posts posts)
-        (partials/pagination posts page))]))
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]))
 
 (defn about
   []
