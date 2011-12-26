@@ -20,8 +20,11 @@
   (GET "/page" []
     (common/page 1))
 
-  (GET "/page/:number" [number]
-    (common/page number))
+  (GET "/page/:page-num" [page-num]
+    (try (let [current-page (Integer/parseInt page-num)]
+           (common/page current-page))
+      (catch Exception _ 
+        (redirect "/404"))))
 
   (GET "/login" []
     (admin/login))

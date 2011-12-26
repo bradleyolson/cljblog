@@ -1,11 +1,12 @@
 (ns models.blog
   (:require [clojure.java.jdbc :as sql]))
 
-(def posts-per-page 1)
+(def posts-per-page 2)
 
 (defn page-offset
-  [page post-count]
-  (str (interpose " " ["offset" (* page post-count)])))
+  [page]
+  ; returns current posts on specific page given "page" and "posts-per-page".
+  (* (- page 1) posts-per-page))
 
 (defn retrieve-all
   []

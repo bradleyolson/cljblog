@@ -4,19 +4,21 @@
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
+; add globals file
+
 (defn index
   []
   (partials/layout
     [:h2 "Home"]
     [:section
-     (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" 1))]))
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" 1))]))
 
 (defn page
-  [page] 
-    [:h2 "Home"]
+  [page]
+  (partials/layout
+    [:h2 (str "Page: " page)]
     [:section
-      (partials/all-posts 
-        (blog/retrieve-with "order by" "id desc" "limit" 1 (blog/page-offset 1 posts-per-page)))])
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" 2 "offset" (blog/page-offset page)))]))
 
 (defn about
   []
