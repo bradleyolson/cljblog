@@ -27,4 +27,5 @@
 (defn fourohfour
   []
   (partials/layout
-    [:h2 "fourohfour"]))
+    [:h2 "fourohfour"]
+    [:p "The page you request could not be found."]))
