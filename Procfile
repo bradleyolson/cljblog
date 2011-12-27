@@ -1,1 +1,1 @@
-web: lein run -m cljblog.core
+web: lein run -m cljblog.run
