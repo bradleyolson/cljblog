@@ -1,1 +1,1 @@
-web: lein run script/run.clj
+web: lein run cljblog.core
