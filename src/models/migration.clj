@@ -14,6 +14,6 @@
 
 (defn -main []
   (print (str "Migrating database... to... \"" db "\"")) (flush)
-  (fn [x] (println x) (System/getenv))
+  (fn [x] (println (str "Environment Variable" x)) System/getenv)
   (create-posts)
   (println "\r\n done"))
