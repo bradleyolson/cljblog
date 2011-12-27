@@ -1,7 +1,7 @@
 (ns models.migration
   (:require [clojure.java.jdbc :as sql]))
 
-(def db (System/getenv "CLJBLOG_DATABASE_URL"))
+(def db (System/getenv "DATABASE_URL"))
 
 (defn create-posts 
   []
@@ -14,6 +14,5 @@
 
 (defn -main []
   (print (str "Migrating database... to... \"" db "\"")) (flush)
-  (fn [x] (println (str "Environment Variable" x)) (System/getenv))
   (create-posts)
   (println "\r\n done"))
