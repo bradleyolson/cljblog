@@ -28,6 +28,7 @@
       [(str "select * from blog" (apply str " " (interpose " " args)))]
       (into [] results))))
 
-(defn create [shout]
+(defn create
+  [post]
   (sql/with-connection (System/getenv "DATABASE_URL")
-    (sql/insert-values :shouts [:body] [shout])))
+    (sql/insert-values :blog [:title] [post])))
