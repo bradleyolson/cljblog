@@ -46,7 +46,8 @@
   []
   [:footer
     [:p "&copy;2011 "
-     [:a { :href "http://twitter.com/baoist" :target "_new" } "@baoist"]]])
+     [:a { :href "http://twitter.com/baoist" :target "_new" } "@baoist"]]
+    [:a { :href "https://github.com/bradleyolson/cljblog" :class "git" :target "_new" } "via github"]])
 
 (defn layout
   [& content]

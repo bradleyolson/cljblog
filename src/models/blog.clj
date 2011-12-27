@@ -14,19 +14,21 @@
       ["select * from blog order by id desc"]
       (into [] results))))
 
-(defn retrieve
-  [& limit]
-  (sql/with-connection (System/getenv "DATABASE_URL")
-    (sql/with-query-results results
-      [(str "select * from blog order by id desc" (str " limit " limit))]
-      (into [] results))))
-
 (defn retrieve-with
   [& args]
   (sql/with-connection (System/getenv "DATABASE_URL")
     (sql/with-query-results results
       [(str "select * from blog" (apply str " " (interpose " " args)))]
       (into [] results))))
+
+(defn create-slug
+  ; takes title and converts spaces to hyphens, if slug already exists it loops through to add "-num" to it.
+  [title & versions]
+  (let [slug (clojure.string/replace title #"\ " "-")
+        version (first versions)]
+    (if version
+      (str slug "-" (+ 1 version))
+      slug)))
 
 (defn create
   [post]
