@@ -12,10 +12,22 @@
     [:section
       (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page))]))
 
+(defn single
+  [slug]
+  (let [post (blog/retrieve-with "WHERE" (str "slug = '" slug "'"))]
+    (if (not-empty post)
+      (partials/layout (partials/single-page-post post))
+      false))
+ ;(partials/layout
+ ;  [:article
+ ;    (partials/single-post post)]
+ ;  ))
+  )
+
 (defn page
   [page]
   (partials/layout
-    [:h2 (str "Page: " page)]
+    [:h2 "Page: " page]
     [:section
       (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]))
 

@@ -32,6 +32,12 @@
       (catch Exception _ 
         (redirect "/404"))))
 
+  (GET "/post/:slug" [slug]
+    (try 
+      (common/single slug)
+      (catch Exception _
+        (redirect "/404"))))
+
   (GET "/login" []
     (admin/login))
 
@@ -40,6 +46,9 @@
 
   (GET "/panel/new" []
     (admin/new-post))
+
+  (GET "/panel/post" []
+    (admin/panel))
 
   (POST "/panel/post" 
     [title body]

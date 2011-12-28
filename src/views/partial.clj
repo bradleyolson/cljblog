@@ -18,11 +18,18 @@
    [:span { :class "separator" } "|"]
    (pagi-next)])
 
+(defn single-page-post
+  [data]
+  (let [post (first data)]
+    [:article
+      [:h1 (:title post)]
+      (:body post)]))
+
 (defn single-post
   [data]
-    [:article
-      [:h1 (:title data)]
-      [:p (:body data)]])
+  [:article
+    [:h1 [:a { :href (str "/post/" (:slug data)) } (:title data)]]
+    (:body data)])
 
 (defn all-posts
   [data]
