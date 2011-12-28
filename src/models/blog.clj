@@ -21,10 +21,14 @@
       [(str "select * from blog" (apply str " " (interpose " " args)))]
       (into [] results))))
 
+(defn prepare-slug
+  [slug]
+  (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" ""))
+
 (defn create-slug
   ; takes title and converts spaces to hyphens, if slug already exists it loops through to add "-num" to it.
   [title & versions]
-  (let [slug (clojure.string/replace title #"\ " "-")
+  (let [slug (prepare-slug title)
         version (first versions)]
     (if version
       (str slug "-" (+ 1 version))
