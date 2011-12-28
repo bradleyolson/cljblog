@@ -17,12 +17,7 @@
   (let [post (blog/retrieve-with "WHERE" (str "slug = '" slug "'"))]
     (if (not-empty post)
       (partials/layout (partials/single-page-post post))
-      false))
- ;(partials/layout
- ;  [:article
- ;    (partials/single-post post)]
- ;  ))
-  )
+      false)))
 
 (defn page
   [page]
