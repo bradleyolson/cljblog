@@ -1,6 +1,8 @@
 (ns views.admin
   (:use [views.partial :as partials])
+  (:use [models.blog :as blog])
   (:use hiccup.core) 
+  (:use hiccup.form-helpers)
   (:use hiccup.page-helpers))
 
 (defn login
@@ -21,13 +23,18 @@
   (partials/layout
     [:a { :href "/panel/new" } "New Post"]))
 
-(defn newpost
+(defn new-post
   []
   (partials/layout
-    [:a { :href "/panel/new" } "New Post"]))
+    (form-to [:post "/panel/post"]
+      [:section
+        (label "title" "Title:")
+        (text-field "title")]
+      [:section
+        (label "body" "Body:")
+        (text-area "body")]
+      (submit-button "New Post"))))
 
 (defn post
-  []
-  (partials/layout
-    [:a { :href "/panel/new" } "New Post"]))  
-
+  [opts]
+  (blog/create opts))

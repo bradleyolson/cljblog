@@ -32,5 +32,6 @@
 
 (defn create
   [post]
-  (sql/with-connection (System/getenv "DATABASE_URL")
-    (sql/insert-values :blog [:title] [post])))
+  (let [post (conj post { :slug (create-slug (post :title)) })]
+    (sql/with-connection (System/getenv "DATABASE_URL")
+      (sql/insert-values :blog (keys post) (vals post)))))
