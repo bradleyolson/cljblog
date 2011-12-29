@@ -3,10 +3,15 @@
 body {
   background: #efefef;
   color: #333;
+  font-size: 16px;
 }
 
 a {
   color: #333;
+}
+
+header h1 a {
+  color: #efefef;
 }
 
 #wrapper {
@@ -34,6 +39,7 @@ nav#main {
 nav#main a {
   width: 100%;
   display: block;
+  font-size: .8em;
 }
 
 nav#main a span {
@@ -49,7 +55,15 @@ nav#main a:hover, nav#main a.active {
   color: #fff;
 }
 
+
 /* main */
+h1 {
+  font-size: 1.75em;
+}
+
+article {
+  font-size: .75em;
+}
 
 form {
   width: 60%;
@@ -81,12 +95,15 @@ form input[type=submit] {
 footer {
   width: 100%;
   float: left;
+  font-size: 16px;
 }
 
 footer p {
   float: left;
+  font-size: .75em;
 }
 
 footer a.git {
   float: right;
+  font-size: .75em;
 }

@@ -32,6 +32,7 @@
         (text-field "title")]
       [:section
         (label "body" "Body:")
+        [:p { :class "sub"} "this area relies on (or will) markdown."]
         (text-area "body")]
       (submit-button "New Post"))))
 

@@ -8,7 +8,6 @@
 (defn index
   []
   (partials/layout
-    [:h2 "Home"]
     [:section
       (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page))]))
 

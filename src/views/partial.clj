@@ -39,7 +39,7 @@
 (defn head
   []
   [:header
-   [:h1 "Simple Blog Test"]])
+   [:h1 [:a { :href "/" } "Baoblog" [:sup "A Place Where Bradley Olson Blogs"]]]])
 
 (defn nav
   [id]
