@@ -1,7 +1,7 @@
 (ns models.blog
   (:use [cljblog.globals :as globals])
-  (:require [clojure.java.jdbc :as sql])
-  (:require [clojure.contrib.math :as math]))
+  (:use [clojure.contrib.math :as math]) 
+  (:require [clojure.java.jdbc :as sql]))
 
 (defn page-offset
   [page]
