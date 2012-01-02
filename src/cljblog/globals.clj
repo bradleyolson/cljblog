@@ -1,3 +1,3 @@
 (ns cljblog.globals)
 
-(def posts-per-page 5)
+(def posts-per-page 1)
