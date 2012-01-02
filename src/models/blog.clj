@@ -4,7 +4,7 @@
 
 (defn page-offset
   [page]
-  ; returns current posts on specific page given "page" and "posts-per-page".
+  "returns current posts on specific page given [page posts-per-page]"
   (* globals/posts-per-page (- page 1)))
 
 (defn retrieve-all

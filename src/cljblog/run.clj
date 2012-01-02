@@ -4,4 +4,7 @@
 
 (defn -main
   []
-  (ring/run-jetty core/app {:port (or (Integer/parseInt (System/getenv "PORT")) 2323) :join? false}))
+  (let [port (if-not (nil? (System/getenv "PORT"))
+               (Integer/parseInt (System/getenv "PORT"))
+               2323)]
+    (ring/run-jetty core/app {:port port :join? false})))
