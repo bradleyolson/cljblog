@@ -28,7 +28,9 @@
 
   (GET "/page/:page-num" [page-num]
     (try (let [current-page (Integer/parseInt page-num)]
-           (common/page current-page))
+           (if (> (model/page-post-count current-page) 0)
+             (common/page current-page)
+             (redirect (str "/page/" (model/last-page)))))
       (catch Exception _ 
         (redirect "/404"))))
 

@@ -1,6 +1,7 @@
 (ns models.blog
   (:use [cljblog.globals :as globals])
-  (:require [clojure.java.jdbc :as sql]))
+  (:require [clojure.java.jdbc :as sql])
+  (:require [clojure.contrib.math :as math]))
 
 (defn page-offset
   [page]
@@ -21,12 +22,20 @@
       [(str "select * from blog" (apply str " " (interpose " " args)))]
       (into [] results))))
 
+(defn page-post-count
+  [page]
+  (count (retrieve-with "offset" (page-offset page)))) 
+
+(defn last-page
+  []
+  (math/ceil (/ (count (retrieve-all)) globals/posts-per-page)))
+
 (defn prepare-slug
   [slug]
   (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" ""))
 
 (defn create-slug
-  ; takes title and converts spaces to hyphens, if slug already exists it loops through to add "-num" to it.
+  "takes title and converts spaces to hyphens, if slug already exists it loops through to add -num to it."
   [title & versions]
   (let [slug (prepare-slug title)
         version (first versions)]
