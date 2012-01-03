@@ -46,7 +46,6 @@
   [title & versions]
   (let [version (first versions)
         slug (prepare-slug title version)]
-    (println (inc (or version 0)))
     (if (slug-exists? slug)
       (create-slug title (inc (or version 0)))   
       slug)))
