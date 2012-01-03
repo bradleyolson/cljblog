@@ -14,7 +14,7 @@
 (defn single
   [slug]
   (let [post (blog/retrieve-with "WHERE" (str "slug = '" slug "'"))]
-    (if (not-empty post)
+    (if-not (empty? post)
       (partials/layout (partials/single-page-post post))
       false)))
 

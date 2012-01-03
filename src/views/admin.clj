@@ -36,6 +36,19 @@
         (text-area "mdbody")]
       (submit-button "New Post"))))
 
+(defn edit-post
+  [post]
+  (partials/layout
+    (form-to [:post "/panel/post"]
+      [:section
+        (label "title" "Title:")
+        (text-field "title" (post :title))]
+      [:section
+        (label "mdbody" "Body:")
+        [:p { :class "sub"} "this area relies on (or will) markdown."]
+        (text-area "mdbody")]
+      (submit-button "New Post"))))
+
 (defn post
   [opts]
   (blog/create opts))
