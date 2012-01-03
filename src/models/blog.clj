@@ -49,6 +49,6 @@
 
 (defn create
   [post]
-  (let [post (conj post { :slug (create-slug (post :title)) :body "foo" })]
+  (let [post (conj post { :slug (create-slug (post :title)) :body (convert-md (post :mdbody)) })]
     (sql/with-connection (System/getenv "DATABASE_URL")
       (sql/insert-values :blog (keys post) (vals post)))))
