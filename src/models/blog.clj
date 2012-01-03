@@ -30,18 +30,25 @@
   []
   (math/ceil (/ (count (retrieve-all)) globals/posts-per-page)))
 
+(defn slug-exists?
+  [test-slug]
+  (> (count (retrieve-with "WHERE" (str "slug = '" test-slug "'"))) 0))
+
 (defn prepare-slug
-  [slug]
-  (clojure.string/lower-case
-     (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" "")))
+  [slug & version]
+  (let [built-slug (clojure.string/lower-case (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" ""))]
+    (if (first version)
+      (str built-slug "-" (first version))
+      built-slug)))
 
 (defn create-slug
   "takes title and converts spaces to hyphens, if slug already exists it loops through to add -num to it."
   [title & versions]
-  (let [slug (prepare-slug title)
-        version (first versions)]
-    (if version
-      (str slug "-" (+ 1 version))
+  (let [version (first versions)
+        slug (prepare-slug title version)]
+    (println (+ 1 (or version 0)))
+    (if (slug-exists? slug)
+      (create-slug title (+ 1 (or version 0)))   
       slug)))
 
 (defn convert-md
