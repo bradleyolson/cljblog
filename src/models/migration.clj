@@ -9,6 +9,7 @@
     (sql/create-table :blog
                       [:id :serial "PRIMARY KEY"]
                       [:body :varchar "NOT NULL"]
+                      [:mdbody :varchar "NOT NULL"]
                       [:title :varchar "NOT NULL"]
                       [:slug :varchar "NOT NULL"]
                       [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"])))

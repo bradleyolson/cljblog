@@ -53,8 +53,8 @@
     (admin/panel))
 
   (POST "/panel/post" 
-    [title body]
-    (admin/post {:title title :body body}))
+    [title mdbody]
+    (admin/post {:title title :mdbody mdbody}))
 
   (GET "/404" []
     (common/fourohfour))

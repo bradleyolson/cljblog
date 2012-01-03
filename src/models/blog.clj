@@ -43,8 +43,12 @@
       (str slug "-" (+ 1 version))
       slug)))
 
+(defn convert-md
+  [text]
+  text)
+
 (defn create
   [post]
-  (let [post (conj post { :slug (create-slug (post :title)) })]
+  (let [post (conj post { :slug (create-slug (post :title)) :body "foo" })]
     (sql/with-connection (System/getenv "DATABASE_URL")
       (sql/insert-values :blog (keys post) (vals post)))))
