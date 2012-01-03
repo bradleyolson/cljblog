@@ -32,7 +32,8 @@
 
 (defn prepare-slug
   [slug]
-  (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" ""))
+  (clojure.string/lower-case
+     (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" "")))
 
 (defn create-slug
   "takes title and converts spaces to hyphens, if slug already exists it loops through to add -num to it."

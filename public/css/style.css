@@ -50,7 +50,7 @@ nav#main a span {
 }
 
 nav#main a:hover, nav#main a.active {
-  background: #442233;
+  background: #00438A;
   opacity: .5;
   color: #fff;
 }
