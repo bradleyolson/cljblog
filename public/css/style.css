@@ -103,7 +103,11 @@ footer p {
   font-size: .75em;
 }
 
-footer a.git {
+footer a.git, footer img {
   float: right;
   font-size: .75em;
+}
+
+footer img {
+  margin-right: 10px;
 }

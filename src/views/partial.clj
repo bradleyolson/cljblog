@@ -54,7 +54,8 @@
   [:footer
     [:p "&copy;2011 "
      [:a { :href "http://twitter.com/baoist" :target "_new" } "@baoist"]]
-    [:a { :href "https://github.com/bradleyolson/cljblog" :class "git" :target "_new" } "via github"]])
+    [:a { :href "https://github.com/bradleyolson/cljblog" :class "git" :target "_new" } "via github"]
+    [:img { :src "/images/clojure.gif" :alt "clojure icon" :width "20px" }]])
 
 (defn layout
   [& content]

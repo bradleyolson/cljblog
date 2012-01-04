@@ -50,9 +50,7 @@
     (admin/new-post))
 
   (GET "/panel/edit/:post-id" [post-id]
-    (println (blog/retrieve-with "WHERE" "id" "=" post-id) post-id)
-    (try 
-      (let [post (blog/retrieve-with "WHERE" "id" "=" post-id)]
+    (try (let [post (blog/retrieve-with "WHERE" "id" "=" post-id)]
         (if-not (empty? post)
           (admin/edit-post (first post))
           (redirect "/panel/new")))

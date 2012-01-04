@@ -46,8 +46,8 @@
       [:section
         (label "mdbody" "Body:")
         [:p { :class "sub"} "this area relies on (or will) markdown."]
-        (text-area "mdbody")]
-      (submit-button "New Post"))))
+        (text-area "mdbody" (post :mdbody))]
+      (submit-button "Edit Post"))))
 
 (defn post
   [opts]
