@@ -9,7 +9,8 @@
   []
   (partials/layout
     [:section
-      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page))]))
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page))]
+      (partials/pagination 1)))
 
 (defn single
   [slug]
@@ -23,7 +24,8 @@
   (partials/layout
     [:h2 "Page: " page]
     [:section
-      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]))
+      (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]
+      (partials/pagination page)))
 
 (defn about
   []

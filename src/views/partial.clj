@@ -1,22 +1,24 @@
 (ns views.partial
   (:use [models.blog :as blog])
+  (:use [cljblog.globals :as globals])
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
 (defn pagi-prev
-  []
-  [:a { :href "#" } "&larr; previous"])
+  [n-page]
+  (if (and (pos? n-page) (> (count (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset n-page))) 0)) 
+    [:a { :href (str "/page/" n-page) } "&larr; previous"]))
 
 (defn pagi-next
-  []
-  [:a { :href "#" } "next &rarr;"])
+  [n-page]
+  (if (and (pos? n-page) (> (count (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset n-page))) 0))
+    [:a { :href (str "/page/" n-page) } "next &rarr;"]))
 
 (defn pagination
-  [posts page]
+  [page]
   [:nav
-   (pagi-prev)
-   [:span { :class "separator" } "|"]
-   (pagi-next)])
+   (pagi-prev (dec page))
+   (pagi-next (inc page))])
 
 (defn single-page-post
   [data]
