@@ -4,21 +4,16 @@
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
 
-(defn pagi-prev
-  [n-page]
-  (if (and (pos? n-page) (> (count (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset n-page))) 0)) 
-    [:a { :href (str "/page/" n-page) } "&larr; previous"]))
-
-(defn pagi-next
-  [n-page]
+(defn pagi-link
+  [n-page tag]
   (if (and (pos? n-page) (> (count (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset n-page))) 0))
-    [:a { :href (str "/page/" n-page) } "next &rarr;"]))
+    [:a { :href (str "/page/" n-page) :class tag } tag]))
 
 (defn pagination
   [page]
   [:nav
-   (pagi-prev (dec page))
-   (pagi-next (inc page))])
+   (pagi-link (dec page) "previous")
+   (pagi-link (inc page) "next")])
 
 (defn single-page-post
   [data]
