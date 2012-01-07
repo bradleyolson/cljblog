@@ -10,14 +10,14 @@
 
 (defn retrieve-all
   []
-  (sql/with-connection (System/getenv "DATABASE_URL")
+  (sql/with-connection globals/db
     (sql/with-query-results results
       ["select * from blog order by id desc"]
       (into [] results))))
 
 (defn retrieve-with
   [& args]
-  (sql/with-connection (System/getenv "DATABASE_URL")
+  (sql/with-connection globals/db
     (sql/with-query-results results
       [(str "select * from blog" (apply str " " (interpose " " args)))]
       (into [] results))))
@@ -57,5 +57,5 @@
 (defn create
   [post]
   (let [post (conj post { :slug (create-slug (post :title)) :body (convert-md (post :mdbody)) })]
-    (sql/with-connection (System/getenv "DATABASE_URL")
+    (sql/with-connection globals/db
       (sql/insert-values :blog (keys post) (vals post)))))
