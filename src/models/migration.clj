@@ -6,9 +6,8 @@
   [table-name]
   (sql/with-connection globals/db
     (sql/with-query-results results
-                            (println (str "select relname from pg_class where relname='" table-name "'"))
       [(str "SELECT * FROM pg_class WHERE relname = '" table-name "'")]
-      (println results))))
+      (> (count results) 0))))
 
 (defn create-posts 
   []
@@ -31,7 +30,12 @@
                       [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"])))
 
 (defn -main []
-  (print (str "Migrating database... to... \"" db "\"")) 
-  (table-exists? "blog")  
+  (println (str "Migrating database... to... \"" db "\"")) 
   (flush)
+  (if-not (table-exists? "blog")
+    ((create-posts) (println "create table 'blog'"))
+    (println "table 'blog' exists"))
+  (if-not (table-exists? "tags")
+    ((create-tags) (println "create table 'tags'"))
+    (println "table 'tags' exists"))
   (println "\r\n done"))
