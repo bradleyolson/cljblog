@@ -7,10 +7,12 @@
   []
   (sql/with-connection db
     (try
-      (sql/drop-table :blog)
+      (do
+        (sql/drop-table :blog)
+        (sql/drop-table :tags)) 
       (catch Exception _))))
 
 (defn -main []
-  (print (str "Dropping table blog in \"" db "\"")) (flush)
+  (println (str "Dropping tables blog, tags in \"" db "\"")) (flush)
   (drop-table)
-  (println "\r\n done"))
+  (println "done"))

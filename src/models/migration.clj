@@ -7,7 +7,7 @@
   (sql/with-connection globals/db
     (sql/with-query-results results
       [(str "SELECT * FROM pg_class WHERE relname = '" table-name "'")]
-      (> (count results) 0))))
+      (not (empty? results)))))
 
 (defn create-posts 
   []
@@ -33,9 +33,13 @@
   (println (str "Migrating database... to... \"" db "\"")) 
   (flush)
   (if-not (table-exists? "blog")
-    ((create-posts) (println "create table 'blog'"))
+    (do 
+      (println "create table 'blog'")
+      (create-posts))
     (println "table 'blog' exists"))
   (if-not (table-exists? "tags")
-    ((create-tags) (println "create table 'tags'"))
+    (do
+      (println "create table 'tags'")
+      (create-tags))
     (println "table 'tags' exists"))
-  (println "\r\n Ending migrations"))
+  (println "Ending migrations"))
