@@ -1,23 +1,39 @@
-(ns models.tag)
+(ns models.tag
+  (:use [cljblog.globals :as globals])
+  (:use [clojure.contrib.math :as math]) 
+  (:require [clojure.java.jdbc :as sql]))
 
-(defn tag-exists?
-  [tagname]
-  (= "foo" "Bar"))
+(defn tag-slug
+  [slug]
+  (clojure.string/lower-case 
+    (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" "")))
+
+(defn unique-tags
+  [slug]
+  (sql/with-connection globals/db
+    (sql/with-query-results results
+      [(str "select * from tags where slug='" slug "'")]
+      (into [] results))))
+
+(defn tags-by-post
+  [id]
+  (sql/with-connection globals/db
+    (sql/with-query-results results
+      [(str "select * from tags where postid='" id "'")]
+      (into [] results))))
 
 (defn add-tag
-  [tagname]
-  tagname)
+  [id tagname]
+  (let [tag-vars { :postid id :type tagname :slug (tag-slug tagname)}]
+    (sql/with-connection globals/db
+      (sql/insert-values :tags (keys tag-vars) (vals tag-vars)))
+    tag-vars))
 
-(defn add-tags
-  [& tags]
-  (let [tag (first tags)
-        remaining (rest tags)]
-    (if-not (tag-exists? tag)
-      (add-tag tag))
-    (if-not (empty? remaining)
-      (recur remaining))))
+(defn format-tags
+  [id tags-list]
+  (map #(add-tag id %) tags-list))
 
-(defn -main []
-  (println "running")
-  (add-tags "foo" "bar" "baz" "wibble")
-  (println "end"))
+(defn create-tags
+  [id tags-list]
+  (if-not (empty? tags-list)
+    (format-tags id (distinct tags-list))))

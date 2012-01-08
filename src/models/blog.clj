@@ -1,4 +1,5 @@
 (ns models.blog
+  (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
   (:use [clojure.contrib.math :as math]) 
   (:require [clojure.java.jdbc :as sql]))
@@ -41,32 +42,14 @@
       (str built-slug "-" (first version))
       built-slug)))
 
-(defn create-slug
+(defn post-slug
   "takes title and converts spaces to hyphens, if slug already exists it loops through to add -num to it."
   [title & versions]
   (let [version (first versions)
         slug (prepare-slug title version)]
     (if (slug-exists? slug)
-      (create-slug title (inc (or version 0)))   
+      (post-slug title (inc (or version 0)))   
       slug)))
-
-(defn unique-tags
-  [id]
-  (sql/with-connection globals/db
-    (sql/with-query-results results
-      [(str "select * from tags where postid=" id)]
-      (into [] results))))
-
-(defn add-tag
-  [id tagname]
-  (let [tag-vars { :postid id :type tagname }]
-    (sql/with-connection globals/db
-      (sql/insert-values :tags (keys tag-vars) (vals tag-vars)))
-    tag-vars))
-
-(defn format-tags
-  [id tags-list]
-  (map #(add-tag id %) tags-list))
 
 (defn convert-md
   [text]
@@ -74,8 +57,7 @@
 
 (defn create
   [post & tags-list]
-  (let [post-vars (conj post { :slug (create-slug (post :title)) :body (convert-md (post :mdbody)) })
+  (let [post-vars (conj post { :slug (post-slug (post :title)) :body (convert-md (post :mdbody)) })
         post (sql/with-connection globals/db
                (sql/insert-values :blog (keys post-vars) (vals post-vars)))]
-      (if-not (empty? tags-list)
-        (format-tags (:id post) (first tags-list)))))
+      (tags/create-tags (:id post) (first tags-list))))

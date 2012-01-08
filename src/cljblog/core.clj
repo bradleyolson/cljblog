@@ -37,8 +37,12 @@
   (GET "/post/:slug" [slug]
     (try 
       (common/single slug)
-      (catch Exception _
-        (redirect "/404"))))
+      (catch Exception _ (redirect "/404"))))
+
+  (GET "/tag/:slug" [slug]
+    (try
+      (common/posts-by-tag slug)
+      (catch Exception _ (redirect "/404"))))
 
   (GET "/login" []
     (admin/login))

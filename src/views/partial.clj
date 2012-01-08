@@ -1,5 +1,6 @@
 (ns views.partial
   (:use [models.blog :as blog])
+  (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
@@ -18,7 +19,7 @@
 (defn tags-list
   [id]
   [:nav
-      (map (fn [tag] [:a (:type tag)]) (blog/unique-tags id))])
+      (map (fn [tag] [:a { :href (str "/tag/" (:slug tag)) } (:type tag)]) (tags/tags-by-post id))])
 
 (defn single-page-post
   [data]

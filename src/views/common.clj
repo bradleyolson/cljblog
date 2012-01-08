@@ -1,6 +1,7 @@
 (ns views.common
   (:use [views.partial :as partials])
   (:use [models.blog :as blog])
+  (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
   (:use hiccup.core) 
   (:use hiccup.page-helpers))
@@ -19,6 +20,13 @@
       (partials/layout (partials/single-page-post post))
       false)))
 
+(defn posts-by-tag
+  [tag]
+  (let [posts "foo"]
+    (println (filter :id (tags/unique-tags "tag2")))
+    (println (filter distinct (:id (tags/unique-tags "tag2"))))
+    (partials/layout [:a "foo"])))
+
 (defn page
   [page]
   (partials/layout
@@ -26,8 +34,7 @@
     [:section
       (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]
       (partials/pagination page)
-      (println "foo")
-      (tags-list page)))
+      (partials/tags-list page)))
 
 (defn about
   []
