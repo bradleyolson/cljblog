@@ -38,4 +38,4 @@
   (if-not (table-exists? "tags")
     ((create-tags) (println "create table 'tags'"))
     (println "table 'tags' exists"))
-  (println "\r\n done"))
+  (println "\r\n Ending migrations"))
