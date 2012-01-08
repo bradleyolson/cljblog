@@ -18,21 +18,21 @@
 (defn tags-list
   [id]
   [:nav
-    (map (fn [tag] [:a (:type tag)]) (blog/unique-tags id))])
+      (map (fn [tag] [:a (:type tag)]) (blog/unique-tags id))])
 
 (defn single-page-post
   [data]
   (let [post (first data)]
     [:article
       [:h1 (:title post)]
-      (:body post)]))
+      (:body post)
+      (tags-list (:id post))]))
 
 (defn single-post
   [data]
   [:article
     [:h1 [:a { :href (str "/post/" (:slug data)) } (:title data)]]
-    (:body data)
-    (tags-list 1)])
+    (:body data)])
 
 (defn all-posts
   [data]

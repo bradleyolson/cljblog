@@ -25,7 +25,9 @@
     [:h2 "Page: " page]
     [:section
       (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]
-      (partials/pagination page)))
+      (partials/pagination page)
+      (println "foo")
+      (tags-list page)))
 
 (defn about
   []

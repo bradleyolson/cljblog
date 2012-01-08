@@ -27,6 +27,7 @@
                       [:id :serial "PRIMARY KEY"]
                       [:postid :integer "NOT NULL"]
                       [:type :varchar "NOT NULL"]
+                      [:slug :varchar "NOT NULL"]
                       [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"])))
 
 (defn -main []
