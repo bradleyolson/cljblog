@@ -61,8 +61,8 @@
     (admin/panel))
 
   (POST "/panel/post" 
-    [title mdbody]
-    (admin/post { :title title :mdbody mdbody }))
+    [title mdbody & tag]
+    (blog/create { :title title :mdbody mdbody } (first (vals tag))))
 
   (GET "/404" []
     (common/fourohfour))

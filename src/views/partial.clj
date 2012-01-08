@@ -15,6 +15,11 @@
    (pagi-link (dec page) "previous")
    (pagi-link (inc page) "next")])
 
+(defn tags-list
+  [id]
+  [:nav
+    (map (fn [tag] [:a (:type tag)]) (blog/unique-tags id))])
+
 (defn single-page-post
   [data]
   (let [post (first data)]
@@ -26,7 +31,8 @@
   [data]
   [:article
     [:h1 [:a { :href (str "/post/" (:slug data)) } (:title data)]]
-    (:body data)])
+    (:body data)
+    (tags-list 1)])
 
 (defn all-posts
   [data]

@@ -34,6 +34,10 @@
         (label "mdbody" "Body:")
         [:p { :class "sub"} "this area relies on (or will) markdown."]
         (text-area "mdbody")]
+      [:section
+       [:h1 "Tags"]
+       (text-field "tag") 
+       (text-field "tag")]
       (submit-button "New Post"))))
 
 (defn edit-post
@@ -48,7 +52,3 @@
         [:p { :class "sub"} "this area relies on (or will) markdown."]
         (text-area "mdbody" (post :mdbody))]
       (submit-button "Edit Post"))))
-
-(defn post
-  [opts]
-  (blog/create opts))

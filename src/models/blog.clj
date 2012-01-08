@@ -50,12 +50,32 @@
       (create-slug title (inc (or version 0)))   
       slug)))
 
+(defn unique-tags
+  [id]
+  (sql/with-connection globals/db
+    (sql/with-query-results results
+      [(str "select * from tags where postid=" id)]
+      (into [] results))))
+
+(defn add-tag
+  [id tagname]
+  (let [tag-vars { :postid id :type tagname }]
+    (sql/with-connection globals/db
+      (sql/insert-values :tags (keys tag-vars) (vals tag-vars)))
+    tag-vars))
+
+(defn format-tags
+  [id tags-list]
+  (map #(add-tag id %) tags-list))
+
 (defn convert-md
   [text]
   text)
 
 (defn create
-  [post]
-  (let [post (conj post { :slug (create-slug (post :title)) :body (convert-md (post :mdbody)) })]
-    (sql/with-connection globals/db
-      (sql/insert-values :blog (keys post) (vals post)))))
+  [post & tags-list]
+  (let [post-vars (conj post { :slug (create-slug (post :title)) :body (convert-md (post :mdbody)) })
+        post (sql/with-connection globals/db
+               (sql/insert-values :blog (keys post-vars) (vals post-vars)))]
+      (if-not (empty? tags-list)
+        (format-tags (:id post) (first tags-list)))))
