@@ -1,7 +1,7 @@
 @import url(bootstrap.css);
 
 body {
-  background: #efefef;
+  background: #fff url(/images/merely_cubed.png) repeat;
   color: #333;
   font-size: 16px;
 }
@@ -40,6 +40,7 @@ nav#main a {
   width: 100%;
   display: block;
   font-size: .8em;
+  text-shadow: 1px 1px 1px #666; 
 }
 
 nav#main a span {
@@ -53,6 +54,7 @@ nav#main a:hover, nav#main a.active {
   background: #00438A;
   opacity: .5;
   color: #fff;
+  text-shadow: none;
 }
 
 

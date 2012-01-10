@@ -23,8 +23,7 @@
 (defn posts-by-tag
   [tag]
   (let [posts "foo"]
-    (println (filter :id (tags/unique-tags "tag2")))
-    (println (filter distinct (:id (tags/unique-tags "tag2"))))
+    (println (find (tags/unique-tags "tag2") :postid)) 
     (partials/layout [:a "foo"])))
 
 (defn page
