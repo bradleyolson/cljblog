@@ -45,6 +45,11 @@
   [:header
    [:h1 [:a { :href "/" } "Baoblog" [:sup "A Place Where Bradley Olson Blogs"]]]])
 
+(defn tag-list
+  []
+  [:nav { :id "taglist" }
+    (tags/unique-tags)])
+
 (defn nav
   [id]
   [:nav { :id id }
@@ -63,6 +68,7 @@
 
 (defn layout
   [& content]
+  (tag-list)
   (html
     (html5
       [:head

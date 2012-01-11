@@ -20,12 +20,6 @@
       (partials/layout (partials/single-page-post post))
       false)))
 
-(defn posts-by-tag
-  [tag]
-  (let [posts "foo"]
-    (println (find (tags/unique-tags "tag2") :postid)) 
-    (partials/layout [:a "foo"])))
-
 (defn page
   [page]
   (partials/layout
@@ -34,6 +28,12 @@
       (partials/all-posts (blog/retrieve-with "order by" "id desc" "limit" globals/posts-per-page "offset" (blog/page-offset page)))]
       (partials/pagination page)
       (partials/tags-list page)))
+
+(defn posts-by-tag
+  [tag & page]
+  (let [posts (map (fn [tag] (blog/post-by-id (:postid tag))) (tags/tags-by-slug tag))]
+    (partials/layout 
+      (partials/all-posts posts))))
 
 (defn about
   []

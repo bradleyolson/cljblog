@@ -16,6 +16,13 @@
       ["select * from blog order by id desc"]
       (into [] results))))
 
+(defn post-by-id
+  [id]
+  (sql/with-connection globals/db
+    (sql/with-query-results results
+      [(str "select * from blog where id=" id)]
+      (first results))))
+
 (defn retrieve-with
   [& args]
   (sql/with-connection globals/db

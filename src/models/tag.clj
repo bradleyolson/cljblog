@@ -8,7 +8,21 @@
   (clojure.string/lower-case 
     (clojure.string/replace (clojure.string/replace slug #"\ " "-") #"[^a-zA-Z0-9\-]" "")))
 
+(defn all-tags
+  []
+  (sql/with-connection globals/db
+    (sql/with-query-results results
+      ["select * from tags w"]
+      (into [] results))))
+
 (defn unique-tags
+  []
+  (let [tags (map (fn [tag] (str (:type tag))) (all-tags))]
+    (map (fn [tag] 
+           (hash-map :tag tag :slug (tag-slug tag))) 
+         (distinct tags))))
+
+(defn tags-by-slug
   [slug]
   (sql/with-connection globals/db
     (sql/with-query-results results
