@@ -45,10 +45,17 @@
   [:header
    [:h1 [:a { :href "/" } "Baoblog" [:sup "A Place Where Bradley Olson Blogs"]]]])
 
+(defn build-tag
+  [tag]
+  [:a { :href (str "/tag/" (:slug tag)) } (:tag tag)])
+
 (defn tag-list
   []
   [:nav { :id "taglist" }
-    (tags/unique-tags)])
+   [:h1 "Topics"]
+   (map (fn [tag] 
+          (build-tag tag))
+        (tags/unique-tags))])
 
 (defn nav
   [id]
@@ -68,7 +75,6 @@
 
 (defn layout
   [& content]
-  (tag-list)
   (html
     (html5
       [:head
@@ -79,6 +85,7 @@
         (include-js "/js/jquery.js" "/js/app.js")
       [:body
         (nav "main")
+        (tag-list)
         [:div { :id "wrapper" }
           [:div {:id "container"}
             (head)
