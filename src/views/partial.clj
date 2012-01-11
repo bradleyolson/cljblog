@@ -47,12 +47,13 @@
 
 (defn build-tag
   [tag]
-  [:a { :href (str "/tag/" (:slug tag)) } (:tag tag)])
+  [:a { :href (str "/tag/" (:slug tag)) } 
+    [:span (:tag tag)]])
 
 (defn tag-list
   []
   [:nav { :id "taglist" }
-   [:h1 "Topics"]
+   [:h1 [:span "Topics" ]]
    (map (fn [tag] 
           (build-tag tag))
         (tags/unique-tags))])

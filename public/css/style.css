@@ -30,33 +30,48 @@ header h1 a {
   z-index: 10;
 }
 
-nav#main {
+nav#main, nav#taglist {
   position: absolute;
   width: 100%;
   margin-top: 55px;
 }
 
-nav#main a {
+nav#main a, nav#taglist a {
   width: 100%;
   display: block;
   font-size: .8em;
   text-shadow: 1px 1px 1px #666; 
 }
 
-nav#main a span {
+nav#main a span, nav#taglist span, nav#taglist h1 span {
   margin: 0 auto;
   padding-left: 10px;
   width: 900px;
   display: block;
 }
 
-nav#main a:hover, nav#main a.active {
+nav#taglist h1 span {
+  padding-left: 0;
+}
+
+nav#main a:hover, nav#main a.active, nav#taglist a:hover {
   background: #00438A;
   opacity: .5;
   color: #fff;
   text-shadow: none;
 }
+nav#taglist a:hover {
+  background:#dcd74a;
+  color: #000;
+}
 
+nav#taglist {
+  margin-top: 130px;
+}
+
+nav#taglist h1 {
+  font-size: .95em;
+}
 
 /* main */
 h1 {
