@@ -11,6 +11,11 @@ a {
 }
 
 header h1 a {
+  display: block;
+  text-indent: -9999px;
+  background: url(/images/logo.png) no-repeat top left;
+  width: 174px;
+  height: 59px;
   color: #efefef;
 }
 
