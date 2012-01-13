@@ -17,7 +17,7 @@
 
 (defn unique-tags
   []
-  (let [tags (map (fn [tag] (str (:type tag))) (all-tags))]
+  (let [tags (map (fn [tag] (hash-map :tag (:type tag) :slug (:slug tag))) (all-tags))]
     (map (fn [tag] 
            (hash-map :tag tag :slug (tag-slug tag))) 
          (distinct tags))))
