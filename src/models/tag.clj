@@ -12,15 +12,13 @@
   []
   (sql/with-connection globals/db
     (sql/with-query-results results
-      ["select * from tags w"]
+      ["select * from tags"]
       (into [] results))))
 
 (defn unique-tags
   []
   (let [tags (map (fn [tag] (hash-map :tag (:type tag) :slug (:slug tag))) (all-tags))]
-    (map (fn [tag] 
-           (hash-map :tag tag :slug (tag-slug tag))) 
-         (distinct tags))))
+    (distinct tags)))
 
 (defn tags-by-slug
   [slug]

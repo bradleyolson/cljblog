@@ -1,6 +1,7 @@
 (ns views.admin
   (:use [views.partial :as partials])
   (:use [models.blog :as blog])
+  (:use [models.tag :as tags])
   (:use hiccup.core) 
   (:use hiccup.form-helpers)
   (:use hiccup.page-helpers))
@@ -23,6 +24,13 @@
   (partials/layout
     [:a { :href "/panel/new" } "New Post"]))
 
+(defn tag-cb-list
+  [items]
+  (map (fn [item] [:section { :class "taglist" }
+                   (println item)
+                   (check-box (item :slug) nil (:tag item))
+                   [:label { :for (:slug item) } (:tag item)]]) items))
+
 (defn new-post
   []
   (partials/layout
@@ -36,6 +44,7 @@
         (text-area "mdbody")]
       [:section
        [:h1 "Tags"]
+       (tag-cb-list (tags/unique-tags))
        (text-field "tag") 
        (text-field "tag")]
       (submit-button "New Post"))))
