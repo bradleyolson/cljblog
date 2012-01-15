@@ -26,9 +26,12 @@
 
 (defn tag-checklist
   [items]
-  (map (fn [item] [:section { :class "taglist" }
-                   (check-box (item :slug) nil (:tag item))
-                   [:label { :for (:slug item) } (:tag item)]]) items))
+  (println items)
+  (map (fn [item] (if-not (and (empty? (item :slug)) (empty? (item :tag)))
+                     [:section { :class "taglist" }
+                       (check-box (item :slug) nil "tag")
+                       [:label { :for (:slug item) } (:tag item)]]))
+       items))
 
 (defn new-post
   []
