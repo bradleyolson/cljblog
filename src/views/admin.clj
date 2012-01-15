@@ -24,10 +24,9 @@
   (partials/layout
     [:a { :href "/panel/new" } "New Post"]))
 
-(defn tag-cb-list
+(defn tag-checklist
   [items]
   (map (fn [item] [:section { :class "taglist" }
-                   (println item)
                    (check-box (item :slug) nil (:tag item))
                    [:label { :for (:slug item) } (:tag item)]]) items))
 
@@ -44,7 +43,7 @@
         (text-area "mdbody")]
       [:section
        [:h1 "Tags"]
-       (tag-cb-list (tags/unique-tags))
+       (tag-checklist (tags/unique-tags))
        (text-field "tag") 
        (text-field "tag")]
       (submit-button "New Post"))))
