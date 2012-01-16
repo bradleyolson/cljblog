@@ -19,10 +19,25 @@
      [:input { :type "submit" :value "Login" }]]
     ))
 
+(defn editable-post
+  [post]
+  [:article
+   [:h1 [:a { :href (str "/panel/edit/" (post :id)) }
+          (post :title)]]])
+
+(defn build-posts-panel
+  [posts]
+  (if-not (empty? posts)
+    (map (fn [post] (editable-post post))
+         posts)))
+
 (defn panel
   []
   (partials/layout
-    [:a { :href "/panel/new" } "New Post"]))
+    [:a { :href "/panel/new" } "New Post"]
+    [:section
+     (build-posts-panel
+       (blog/retrieve-all))]))
 
 (defn tag-checklist
   [items]
