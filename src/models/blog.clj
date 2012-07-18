@@ -1,7 +1,8 @@
 (ns models.blog
   (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
-  (:use [clojure.contrib.math :as math]) 
+  (:use [clojure.contrib.math :as math])
+  ;(:use [markdown-clj :as markdown])
   (:require [clojure.java.jdbc :as sql]))
 
 (defn page-offset
@@ -32,7 +33,7 @@
 
 (defn page-post-count
   [page]
-  (count (retrieve-with "offset" (page-offset page)))) 
+  (count (retrieve-with "offset" (page-offset page))))
 
 (defn last-page
   []
@@ -52,11 +53,9 @@
 (defn post-slug
   "takes title and converts spaces to hyphens, if slug already exists it loops through to add -num to it."
   [title & versions]
-  (let [version (first versions)
-        slug (prepare-slug title version)]
-    (if (slug-exists? slug)
-      (post-slug title (inc (or version 0)))   
-      slug)))
+  (if (slug-exists? (prepare-slug title (first versions)))
+    (post-slug title (inc (or (first versions) 0)))
+    (prepare-slug title (first versions))))
 
 (defn convert-md
   [text]

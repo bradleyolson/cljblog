@@ -1,6 +1,6 @@
 (defproject cljblog "1.0.0-SNAPSHOT"
   :description "A Simple Blog in Clojure"
-  :dependencies 
+  :dependencies
     [[org.clojure/clojure "1.2.1"]
      [org.clojure/clojure-contrib "1.2.0"]
      [org.clojure/java.jdbc "0.1.1"]
@@ -9,7 +9,9 @@
      [ring/ring-jetty-adapter "1.0.0"]
      [compojure "0.6.4"]
      [hiccup "0.3.7"]
+     [markdown-clj "0.8"]
      [postgresql/postgresql "8.4-702.jdbc4"]]
   :dev-dependencies
     [[lein-run "1.0.0-SNAPSHOT"]
-     [org.clojure/java.jdbc "0.1.1"]])
+     [org.clojure/java.jdbc "0.1.1"]]
+  :main cljblog.run)
