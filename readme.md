@@ -1,6 +1,7 @@
-# test
+# Cljblog
 
-A Clojure library designed to ... well, that part is up to you.
+a blog in clojure.
+
 
 ## Usage
 
