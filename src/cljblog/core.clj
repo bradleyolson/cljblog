@@ -4,7 +4,7 @@
   (:require [models.blog :as blog])
   (:use clojure.core)
   (:use hiccup.core) 
-  (:use hiccup.page-helpers)
+  (:use hiccup.page)
   (:use compojure.core)
   (:use [ring.adapter.jetty :as ring])
   (:use ring.util.response)
@@ -80,3 +80,4 @@
     (wrap-params routes)
     (wrap-reload '[cljblog.core])
     (wrap-file "public")))
+

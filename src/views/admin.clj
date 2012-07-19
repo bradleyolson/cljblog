@@ -3,8 +3,8 @@
   (:use [models.blog :as blog])
   (:use [models.tag :as tags])
   (:use hiccup.core) 
-  (:use hiccup.form-helpers)
-  (:use hiccup.page-helpers))
+  (:use hiccup.form)
+  (:use hiccup.page))
 
 (defn login
   []

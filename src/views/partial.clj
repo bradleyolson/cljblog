@@ -3,7 +3,7 @@
   (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
   (:use hiccup.core) 
-  (:use hiccup.page-helpers))
+  (:use hiccup.page))
 
 (defn pagi-link
   [n-page tag]

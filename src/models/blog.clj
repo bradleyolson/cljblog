@@ -2,7 +2,7 @@
   (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
   (:use [clojure.contrib.math :as math])
-  ;(:use [markdown-clj :as markdown])
+  ;(:use markdown)
   (:require [clojure.java.jdbc :as sql]))
 
 (defn page-offset
