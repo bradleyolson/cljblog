@@ -2,7 +2,7 @@
   (:use [models.tag :as tags])
   (:use [cljblog.globals :as globals])
   (:use [clojure.contrib.math :as math])
-  ;(:use markdown)
+  (:use markdown)
   (:require [clojure.java.jdbc :as sql]))
 
 (defn page-offset
@@ -57,13 +57,9 @@
     (post-slug title (inc (or (first versions) 0)))
     (prepare-slug title (first versions))))
 
-(defn convert-md
-  [text]
-  text)
-
 (defn create
   [post & tags-list]
-  (let [post-vars (conj post { :slug (post-slug (post :title)) :body (convert-md (post :mdbody)) })
+  (let [post-vars (conj post { :slug (post-slug (post :title)) :body (markdown/md-to-html-string (post :mdbody)) })
         post (sql/with-connection globals/db
                (sql/insert-values :blog (keys post-vars) (vals post-vars)))]
       (tags/create-tags (:id post) (first tags-list))))
